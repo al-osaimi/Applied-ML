@@ -113,7 +113,32 @@ Vocabulary = {h, e, l, o}
   -	only	backpropagate	for	some	smaller	number of	steps
 - Practical and widely used
 
+### **Visual Logic**
+
+**Standard BPTT:**
+`[Input 1] -> [Input 2] -> [Input 3] ... -> [Input 1000] -> BACKPROP ALL THE WAY`
+
+**Truncated BPTT (size=5):**
+`[In 1...5] -> BACKPROP` -> `[In 6...10] -> BACKPROP` -> `[In 11...15] -> BACKPROP`
+*(The hidden state carries over, but the gradient math is "cut" every 5 steps.)*
+
+<br/>
+
 ![alt text](1-06666310.png)
+
+
+
+## Comparison: Standard BPTT vs. Truncated BPTT
+
+| Feature              | Standard BPTT                       | Truncated BPTT (TBPTT)               |
+|:---------------------|:------------------------------------|:-------------------------------------|
+| **Core Concept** | Processes the **entire** sequence.  | Processes the sequence in **chunks**. |
+| **Memory Cost** | High                        | Low  *(chunk size)*.|
+| **Learning Speed** | Slow (One update per sequence).     | Fast (Updates after every chunk).    |
+| **Gradient Flow** | Flows back to the very beginning.   | Stops at the start of the chunk.     |
+| **Vanishing Gradients**| High risk due to long paths.      | Lower risk (shorter paths).          |
+| **Implementation** | Simple, but scales poorly.          | Standard for modern RNNs/LSTMs.      |
+
 
 ---
 
