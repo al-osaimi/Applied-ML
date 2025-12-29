@@ -113,7 +113,7 @@ Vocabulary = {h, e, l, o}
   -	only	backpropagate	for	some	smaller	number of	steps
 - Practical and widely used
 
-<image src="https://files.codingninjas.in/article_images/truncated-bptt-0-1646034602.webp" width="512" >
+![alt text](1-06666310.png)
 
 ---
 
