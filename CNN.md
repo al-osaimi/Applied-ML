@@ -188,8 +188,8 @@ Used for texture generation.
 
 - **Nearest	Neighbor**: Generate pixels one at a time in scanline order form neighborhood
 - **Gram matrix**: captures correlations between feature channels
- - Ignores spatial location
- - Represents texture statistics
+  - Ignores spatial location
+  - Represents texture statistics
 
 <image algin="center" src="https://www.tech-art.org/wp-content/uploads/2019/03/GreenPatternResult-768x384.png" widht="512">
 
