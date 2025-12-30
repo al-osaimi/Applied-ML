@@ -73,7 +73,7 @@ How	can	we	compare	our	prediction	to	the	ground-truth box?
 
 <image src="https://www.researchgate.net/publication/369760111/figure/fig1/AS:11431281136774273@1680578399530/ntersection-over-Union-IoU-a-The-IoU-is-calculated-by-dividing-the-intersection-of.ppm">
 
-### Overlapping	Boxes Issue
+### Overlapping Boxes Issue
 
 **Problem:** 
 Object detectors often output many overlapping detections
@@ -102,7 +102,7 @@ NMS may eliminate *good* boxes when objects	are	highly overlapping, no good solu
 
 ---
 
-## 3. Fast R-CNN (Key Optimization)
+## 3. Fast R-CNN
 
 ### Main idea
 **Run the CNN once per image**, not per region like "slow RNN".
@@ -110,12 +110,14 @@ NMS may eliminate *good* boxes when objects	are	highly overlapping, no good solu
 ### Detailed Pipeline
 
 1. Input image
-2. Run backbone CNN → feature map
-3. For each region proposal:
-   - Crop features using **RoI Pooling**
+2. Image Processing with a CNN Backbone → feature map
+3. Region Proposal (RoI) via Selective Search
+3. For each RoI **crop features using RoI Pooling**
 4. For each RoI:
    - Class prediction
    - Bounding box regression
+
+<image src="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*Hw4sfqFmVyUAI9TW.jpeg">
 
 ### What improved?
 
@@ -129,9 +131,42 @@ Region proposals still computed by **Selective Search on CPU**
 
 ---
 
-## 4. Cropping	Features: 
+## 4. Faster R-CNN (Major Breakthrough)
 
-### 4.1 RoI Pooling
+### Main idea
+
+Faster R-CNN introduced **Insert Region Proposal Network (RPN)** to predict proposals from features rather than selective search.
+
+
+<image src="https://media.geeksforgeeks.org/wp-content/uploads/20200219125702/faster-RCNN.png">
+
+<br>
+
+### Step by step:
+
+1. **Backbone:** The image is converted into a convolutional feature map.
+2. **Anchors:** The RPN generates reference boxes (anchors) across the feature map.
+3. **Classification:** Each anchor is scored as either an object or background.
+4. **Regression:** The coordinates of the object anchors are refined to fit the object perfectly.
+
+### Train with 4 losses
+
+1. **RPN	classification:**	anchor	box	is	
+object	/	not	an	object
+2. **RPN	regression:**	predict	transform	
+from	anchor	box	to	proposal	box
+3. **Object	classification:**	classify	
+proposals	as	background	/	object	
+class
+4. **Object	regression:**	predict	transform	
+from	proposal	box	to	object	box
+
+> Image → Backbone (Features) → RPN (Anchors) → Classification (Is it an object?) + Regression (Fix the box).
+---
+
+## 5. Cropping	Features: 
+
+### 5.1 RoI Pooling
 
 ![alt text](image-1.png)
 
@@ -145,7 +180,7 @@ Region proposals still computed by **Selective Search on CPU**
 **Problem:**
 > Slight misalignment due to snapping; different-sized subregions
 
-### 4.2 RoI Align (used in Mask R-CNN)
+### 5.2 RoI Align (used in Mask R-CNN)
 
 ![alt text](image-2.png)
 
@@ -160,36 +195,16 @@ Region proposals still computed by **Selective Search on CPU**
 
 ---
 
-## 5. Faster R-CNN (Major Breakthrough)
-
-### Main idea
-Learn region proposals using a CNN instead of hand-crafted methods.
-
-*Insert	Region	Proposal Network (RPN) to predict proposals	from	features*
-
-### Train with 4 losses
-
-1. **RPN	classification:**	anchor	box	is	
-object	/	not	an	object
-2. **RPN	regression:**	predict	transform	
-from	anchor	box	to	proposal	box
-3. **Object	classification:**	classify	
-proposals	as	background	/	object	
-class
-4. **Object	regression:**	predict	transform	
-from	proposal	box	to	object	box
-
----
-
 ### Region Proposal Network (RPN) – In Detail
 
-Faster	R-CNN	is	a Two-stage	object	detector
+Faster R-CNN is	a Two-stage	object	detector
 1. First	stage:	Run	once	per	image
     - Backbone	network
     - Region proposal network
 2. Second	stage:	Run	once	per	region
     - Crop	features: RoIpool/align
-    - Predict object class-Prediction bboxoffse
+    - Predict object class
+    - Prediction box
 
 <image src="https://miro.medium.com/v2/resize:fit:676/1*rmrribXQk7I5Vzh7javvPA.png">
 
