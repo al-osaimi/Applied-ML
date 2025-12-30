@@ -98,7 +98,7 @@ Used to visualize high-dimensional CNN features.
 
 Used for explainability and interpretability.
 
-### Saliency by occlusion
+### A) Saliency by occlusion
 
 - Mask parts of the image
 - Measure change in class score
@@ -106,15 +106,15 @@ Used for explainability and interpretability.
 
 ![alt text](cnn/image-2.png)
 
-### Saliency by backpropagation
+### B) Saliency by backpropagation
 - Compute gradient of class score
 - Compute probabilities
 - Fast but noisy
 
-### Segmentation without Supervision
+### C) Segmentation without Supervision
 - Use GrabCut on saliency map
 
-### Guided backpropagation
+### D) Guided backpropagation
 Find the part of an image that a neuron	responds to.
 - Only positive gradients through ReLU
 - Clearer saliency maps
@@ -188,8 +188,8 @@ Used for texture generation.
 
 - **Nearest	Neighbor**: Generate pixels one at a time in scanline order form neighborhood
 - **Gram matrix**: captures correlations between feature channels
-- Ignores spatial location
-- Represents texture statistics
+ - Ignores spatial location
+ - Represents texture statistics
 
 <image algin="center" src="https://www.tech-art.org/wp-content/uploads/2019/03/GreenPatternResult-768x384.png" widht="512">
 
