@@ -70,7 +70,7 @@ Find	a	small	set	of	boxes	that	are	likely	to	cover	all	objects
 How	can	we	compare	our	prediction	to	the	ground-truth box?
 - Intersection over Union (IoU)
 
-<image src="https://idiotdeveloper.com/wp-content/uploads/2023/01/iou-1024x781.webp" width="512">
+<image src="https://idiotdeveloper.com/wp-content/uploads/2023/01/iou-1024x781.webp" width="256">
 
 ### Overlapping Boxes Issue
 
