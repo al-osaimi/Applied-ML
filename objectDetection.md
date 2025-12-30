@@ -50,11 +50,10 @@ Find	a	small	set	of	boxes	that	are	likely	to	cover	all	objects
 
 ### Step-by-step Pipeline
 
-1. Input image
-2. Generate ~2000 region proposals using **Selective Search (CPU)**
-3. Warp each region to fixed size (e.g. 224×224)
-4. Run CNN **independently** on each region
-5. Output:
+1. Generate ~2000 region proposals using **Selective Search (CPU)**
+2. Warp each region to fixed size (e.g. 224×224)
+3. Run CNN **independently** on each region
+4. Output:
    - Class scores
    - Bounding box regression
 
