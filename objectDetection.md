@@ -15,7 +15,7 @@ each prediction contains:
 - Object Detection
 - Instance Segmentation
 
-<image src="https://www.researchgate.net/publication/346091812/figure/fig5/AS:979480482955270@1610537753983/Computer-vision-tasks-Adapted-from.png">
+<image src="https://bigblue.academy/uploads/images/blog/computer-vision/computer-vision-tasks.jpg.jpg" width="512">
 
 ---
 
